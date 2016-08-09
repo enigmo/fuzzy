@@ -66,18 +66,18 @@ describe('fuzzy', function(){
   });
   describe('.filter', function(){
     it('should return list untouched when the pattern is undefined', function() {
-      arr = ['aba', 'c', 'cacb']
+      var arr = ['aba', 'c', 'cacb'];
       var result = fuzzy.filter(undefined, arr);
-      expect(result).to.equal(arr)
-    })
+      expect(result).to.equal(arr);
+    });
     it('should return an empty array when the array is undefined', function() {
       var result = fuzzy.filter('pattern', undefined);
-      expect(result).to.deep.equal([])
-    })
+      expect(result).to.deep.equal([]);
+    });
     it('should return an empty array when the array is empty', function() {
       var result = fuzzy.filter('pattern', []);
-      expect(result).to.deep.equal([])
-    })
+      expect(result).to.deep.equal([]);
+    });
     it('should return the index and matching array elements', function(){
       var result = fuzzy.filter('ab', ['aba', 'c', 'cacb']);
       expect(result).to.have.length(2);
@@ -119,6 +119,13 @@ describe('fuzzy', function(){
       var arr = 'abcdefghjklmnop'.split('');
       var results = _.pluck(fuzzy.filter('', arr), 'string');
       expect(results).to.eql(arr);
+    });
+    it('should return list sorted by match and shorter string with score options', function(){
+      var result = fuzzy.filter('go', ['do go', 'goggle', 'go', 'other'], { score: 'length' });
+      expect(result).to.have.length(3);
+      expect(result[0].string).to.equal('go');
+      expect(result[1].string).to.equal('do go');
+      expect(result[2].string).to.equal('goggle');
     });
   });
 });
