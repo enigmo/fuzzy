@@ -121,11 +121,11 @@ describe('fuzzy', function(){
       expect(results).to.eql(arr);
     });
     it('should return list sorted by match and shorter string', function(){
-      var result = fuzzy.filter('go', ['do go', 'goggle', 'go', 'other']);
+      var result = fuzzy.filter('go', ['do go', 'gogle', 'go', 'other']);
       expect(result).to.have.length(3);
       expect(result[0].string).to.equal('go');
-      expect(result[1].string).to.equal('do go');
-      expect(result[2].string).to.equal('goggle');
+      expect(result[1].string).to.equal('gogle');
+      expect(result[2].string).to.equal('do go');
     });
   });
 });
