@@ -120,8 +120,8 @@ describe('fuzzy', function(){
       var results = _.pluck(fuzzy.filter('', arr), 'string');
       expect(results).to.eql(arr);
     });
-    it('should return list sorted by match and shorter string with score options', function(){
-      var result = fuzzy.filter('go', ['do go', 'goggle', 'go', 'other'], { score: 'length' });
+    it('should return list sorted by match and shorter string', function(){
+      var result = fuzzy.filter('go', ['do go', 'goggle', 'go', 'other']);
       expect(result).to.have.length(3);
       expect(result[0].string).to.equal('go');
       expect(result[1].string).to.equal('do go');
