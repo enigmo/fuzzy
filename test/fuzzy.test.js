@@ -127,5 +127,12 @@ describe('fuzzy', function(){
       expect(result[1].string).to.equal('gogle');
       expect(result[2].string).to.equal('do go');
     });
+    it('should give higher score when match strings are at smaller index', function(){
+      var result = fuzzy.filter('s', ['hermes', 'supreme']);
+      console.log(result);
+      expect(result).to.have.length(2);
+      expect(result[0].string).to.equal('supreme');
+      expect(result[1].string).to.equal('hermes');
+    });
   });
 });
